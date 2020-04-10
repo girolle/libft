@@ -6,7 +6,7 @@
 /*   By: rczarfun <rczarfun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 17:09:05 by rczarfun          #+#    #+#             */
-/*   Updated: 2019/09/25 16:35:04 by rczarfun         ###   ########.fr       */
+/*   Updated: 2020/01/22 17:00:02 by rczarfun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,8 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_abs(int nb);
 int					ft_num_len(int n);
+int					get_next_line(const int fd, char **line);
+int					*ft_num_split(char *s);
+int					ft_num_ammount(char *s);
+
 #endif

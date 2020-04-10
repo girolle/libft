@@ -3,20 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rczarfun <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: rczarfun <rczarfun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/09/17 20:57:52 by rczarfun          #+#    #+#              #
-#    Updated: 2019/09/25 16:35:04 by rczarfun         ###   ########.fr        #
+#    Created: 2019/09/11 20:49:09 by bcolossu          #+#    #+#              #
+#    Updated: 2020/01/21 18:53:55 by rczarfun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+.PHONY: $(NAME) all compile fclean clean re
+
 NAME = libft.a
 
-CC = gcc -Wall -Wextra -Werror
-
-HD = libft.h
-
-SRC = ft_atoi.c \
+SRCS =	ft_atoi.c \
 	ft_lstnew.c \
 	ft_putendl_fd.c \
 	ft_strequ.c \
@@ -76,24 +74,24 @@ SRC = ft_atoi.c \
 	ft_lstmap.c \
 	ft_abs.c \
 	ft_num_len.c \
+	get_next_line.c\
+	ft_num_split.c\
 
-OBJ = $(SRC:.c=.o)
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+$(NAME): $(OBJS)
+		ar rc $(NAME) $^
+		ranlib $(NAME)
 
-%.o: %.c
-	$(CC) -c $< -I.
-
-clean:
-	rm -f $(OBJ)
+$(OBJS): %.o : %.c libft.h get_next_line.h
+		gcc -Wall -Wextra -Werror -I . -c $<
 
 fclean: clean
-	rm -rf $(NAME)
+		/bin/rm -f libft.a
+
+clean:
+		/bin/rm -f $(OBJS)
 
 re: fclean all
-
-.PHONY: all clean fclean re
